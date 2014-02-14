@@ -63,24 +63,30 @@ function ready(error, world, names, values) {
       i = -1,
       n = countries.length;
 
+//    names.forEach(function(name){
+//        var tryit = countries.filter(function(n) { return name.id == n.id; })[0];
+//        if (typeof tryit === "undefined"){
+//            console.log("Failed in match 1: " + name.name );
+//        }
+//    });
   countries.forEach(function(d) { 
 
     var tryit = names.filter(function(n) { return d.id == n.id; })[0];
     if (typeof tryit === "undefined"){
-//      console.log("Failed in match 1: " + d);
+        //console.log("Failed in match 1: " + d.id );
     } else {
-      d.name = tryit.name; 
+        d.name = tryit.name;
     }
-   
-    var local_max = 0; 
+
+    var local_max = 0;
     var tryit2 = values.filter(function(n) { return d.name == n.Country; })[0];
     if (typeof tryit2 === "undefined"){
-//	console.log("Failed to find data for: " + d.name);
+        console.log("Failed to find data for: " + d.name);
     } else {
-	d.value = parseInt(tryit2[config.column_title].replace(/\,/g,''));
-	if (d.value > max_value) {
-		max_value = d.value;
-	}
+        d.value = parseInt(tryit2[config.column_title].replace(/\,/g,''));
+        if (d.value > max_value) {
+            max_value = d.value;
+        }
     }
 
   });
@@ -100,6 +106,8 @@ var country = svg.selectAll(".country").data(countries);
       .on("mousemove", function(d,i) {
             d3.select(this).style("stroke","black")
                 .style("stroke-width","1.2px");
+            $('#info').html("<h2>" + d.name + "</h2>Population: <span class='population'>" +
+                d.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>");
 
         })
       .on("click", function(d,i) {
