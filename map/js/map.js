@@ -98,10 +98,14 @@ var country = svg.selectAll(".country").data(countries);
     // Respond to mouse actions
     country
       .on("mousemove", function(d,i) {
+      	d3.select(this).style("stroke","black")
+      		       .style("stroke-width","1.2px");
       })
       .on("click", function(d,i) {
       })
       .on("mouseout",  function(d,i) {
+      	d3.select(this).style("stroke","#666")
+      		       .style("stroke-width","0.4px");
       });
 
 }
