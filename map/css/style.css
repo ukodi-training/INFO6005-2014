@@ -9,7 +9,7 @@ body {
 	stroke-linejoin: round;
 }
 #info{
-	position:relative;
+	float:right;
 }
 #map {
 	position: absolute;
