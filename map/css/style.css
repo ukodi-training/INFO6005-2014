@@ -8,8 +8,11 @@ body {
 	stroke-width: .1px;
 	stroke-linejoin: round;
 }
+#info{
+	position: relative;
+}
 #map {
-	position: absolute;
+	position: relative;
 	width: 800px;
 }
 #content {
